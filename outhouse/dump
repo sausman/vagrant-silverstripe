@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ $USER = 'vagrant' ]; then
+  mysqldump -u root SS_mysite > /vagrant/outhouse/dumps/SS_mysite-$(date +"%s").dump
+else
+  vagrant ssh -c 'mysqldump -u root SS_mysite > /vagrant/outhouse/dumps/SS_mysite-$(date +"%s").dump'
+fi

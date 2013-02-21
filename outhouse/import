@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [[ -n "$1" ]]; then
+  dump=$1
+else
+  echo 'dump file not specified'
+  exit 1
+fi
+
+if [ $USER = 'vagrant' ]; then
+  mysql -u root SS_mysite < /vagrant/outhouse/dumps/$dump
+else
+  vagrant ssh -c "mysql -u root SS_mysite < /vagrant/outhouse/dumps/$dump"
+fi
